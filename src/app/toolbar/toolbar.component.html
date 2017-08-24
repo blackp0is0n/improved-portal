@@ -1,0 +1,32 @@
+<div class="navbar-fixed">
+
+  <nav  role="navigation">
+
+    <div class="nav-wrapper green">
+      <a [routerLink]="['']" id="logo-container" class="brand-logo">Improved portal</a>
+
+      <ul class="right hide-on-med-and-down">
+
+        <li *ngIf="!(authService.userSignedIn$ | async)"> 
+          <a (click)="presentAuthDialog()" ><i class="material-icons left">input</i>LOGIN</a>
+        </li>
+        <li *ngIf="!(authService.userSignedIn$ | async)"> 
+          <a (click)="presentAuthDialog('register')"><i class="material-icons left">assignment_ind</i>REGISTER</a>
+        </li>
+
+        <li *ngIf="(authService.userSignedIn$ | async)">
+          <a [routerLink]="['/profile']"><i class="material-icons left">perm_identity</i>PROFILE</a>
+        </li>
+        <li *ngIf="(authService.userSignedIn$ | async)">
+          <a (click)="logOut()"><i class="material-icons left">power_settings_new</i>LOGOUT</a>
+        </li>
+
+      </ul>
+
+    </div>
+
+  </nav>
+
+</div>
+
+<app-auth-dialog #authDialog ></app-auth-dialog>
